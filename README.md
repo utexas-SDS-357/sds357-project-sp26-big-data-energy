@@ -8,21 +8,21 @@
 ---
 
 ## 📖 Project Description
-[cite_start]This study evaluates how shifting political climates and federal Executive Orders influence police behavior and traffic stop outcomes over time in San Antonio, Texas[cite: 952, 953]. [cite_start]San Antonio’s unique demographic profile, with a **65% Hispanic population**, serves as a critical marker for examining how ethnic disparities fluctuate across different administrative regimes[cite: 954, 955].
+This study evaluates how shifting political climates and federal Executive Orders influence police behavior and traffic stop outcomes over time in San Antonio, Texas. San Antonio’s unique demographic profile, with a **65% Hispanic population**, serves as a critical marker for examining how ethnic disparities fluctuate across different administrative regimes.
 
 ### **Core Research Question**
-[cite_start]Do traffic stop outcomes (searches and arrests) differ significantly between the **Obama Era** (EO 13688) and the **Trump Era** (EO 13773), and how do these transitions impact the racial "disparity gap" in high-discretion policing? [cite: 1062, 1066, 1101]
+Do traffic stop outcomes (searches and arrests) differ significantly between the **Obama Era** (EO 13688) and the **Trump Era** (EO 13773), and how do these transitions impact the racial "disparity gap" in high-discretion policing?
 
 ---
 
 ## 📂 Overview of Data Folder
-[cite_start]This directory contains the essential reference files required to contextualize, filter, and model the raw stop data[cite: 981, 1042].
+This directory contains the essential reference files required to contextualize, filter, and model the raw stop data.
 
 | File | Type | Project Role |
 | :--- | :--- | :--- |
-| `policy_data.csv` | Supplemental Dataset | [cite_start]Contains 20 records of federal, state, and local policies used to create **14 binary indicators** for the ITS model [cite: 1062-1068]. |
-| `COSABoundary.geojson` | Spatial Boundary | [cite_start]Official San Antonio municipal limits used to refine the dataset from **880,810 to 824,051 observations**[cite: 981, 1112]. |
-| `sanantonio.csv` | Raw Data | [cite_start]Original stop-level records sourced from the **Stanford Open Policing Project**[cite: 953]. |
+| `policy_data.csv` | Supplemental Dataset | Contains 20 records of federal, state, and local policies used to create **14 binary indicators** for the ITS model. |
+| `COSABoundary.geojson` | Spatial Boundary | Official San Antonio municipal limits used to refine the dataset from **880,810 to 824,051 observations**. |
+| `sanantonio.csv` | Raw Data | [cite_start]Original stop-level records sourced from the **Stanford Open Policing Project**. |
 
 ---
 
