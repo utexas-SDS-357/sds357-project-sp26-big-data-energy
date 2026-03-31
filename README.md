@@ -6,10 +6,10 @@
 ---
 
 ## Project Description
-This study evaluates how shifting political climates and federal Executive Orders influence police behavior and traffic stop outcomes over time in San Antonio, Texas. San Antonio’s unique demographic profile, with a **65% Hispanic population**, serves as a critical marker for examining how ethnic disparities fluctuate across different administrative regimes.
+This study evaluates how shifting political climates and federal Executive Orders influence police behavior and traffic stop outcomes over time in San Antonio, Texas. San Antonio’s unique demographic profile, with a 65% Hispanic population, serves as a critical marker for examining how ethnic disparities fluctuate across different administrative regimes.
 
 ### **Core Research Question**
-Do traffic stop outcomes (searches and arrests) differ significantly between the **Obama Era** (EO 13688) and the **Trump Era** (EO 13773), and how do these transitions impact the racial "disparity gap" in high-discretion policing?
+Do traffic stop outcomes (searches and arrests) differ significantly between the Obama Era (EO 13688) and the Trump Era (EO 13773), and how do these transitions impact the racial "disparity gap" in high-discretion policing?
 
 ---
 
@@ -18,9 +18,9 @@ This directory contains the essential reference files required to contextualize,
 
 | File | Type | Project Role |
 | :--- | :--- | :--- |
-| `policy_data.csv` | Supplemental Dataset | Contains 20 records of federal, state, and local policies used to create **14 binary indicators** for the ITS model. |
-| `COSABoundary.geojson` | Spatial Boundary | Official San Antonio municipal limits used to refine the dataset from **880,810 to 824,051 observations**. |
-| `sanantonio.csv` | Raw Data | Original stop-level records sourced from the **Stanford Open Policing Project**. |
+| `policy_data.csv` | Supplemental Dataset | Contains 20 records of federal, state, and local policies used to create 14 binary indicators for the ITS model. |
+| `COSABoundary.geojson` | Spatial Boundary | Official San Antonio municipal limits used to refine the dataset from 880,810 to 824,051 observations. |
+| `sanantonio.csv` | Raw Data | Original stop-level records sourced from the Stanford Open Policing Project. |
 
 ---
 
@@ -59,7 +59,7 @@ To reproduce the analysis from raw data to final inference, follow the sequence 
 | :--- | :--- | :--- | :--- |
 | **Wrangling** | 1 | `sanantonio-Sarah01.ipynb` | Run first to ingest and clean the raw Stanford Open Policing Project data. |
 | | 2 | `initalencoding.ipynb` | Run to encode demographic features and define the "Extreme Outcomes" target. |
-| | 3 | `filtering.ipynb` | Apply the spatial filter to refine the dataset to **824,051 valid observations**. |
+| | 3 | `filtering.ipynb` | Apply the spatial filter to refine the dataset to 824,051 valid observations. |
 | | 4 | `final_data_policy.ipynb` | Execute to produce the final `teamb_final_data.csv` used for all remaining analysis. |
 | **Exploration** | 5 | `eda.ipynb` / `sanantonio2-Sarah.ipynb` | Generate visual summaries of racial disparities and policy-specific impact charts. |
 | **Modeling** | 6 | `its_modeling.ipynb` | Run final regression to produce the ITS model predictions and the Obama Counterfactual projection. |
