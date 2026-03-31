@@ -48,7 +48,7 @@ This directory houses the primary inferential model designed to quantify changes
 
 | Notebook | Model Type | Functional Components |
 | :--- | :--- | :--- |
-| `its_modeling.ipynb` | **Interrupted Time Series (ITS)** | Defines OLS regression (trend/intervention); calculates the **Obama Counterfactual**; statistically validates the 2017 shift; generates comprehensive Observed vs. Predicted plots. |
+| `its_modeling.ipynb` | **Interrupted Time Series (ITS)** | Defines OLS regression (trend/intervention); calculates the Obama Counterfactual; statistically validates the 2017 shift; generates comprehensive Observed vs. Predicted plots. |
 
 ---
 
