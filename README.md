@@ -13,7 +13,7 @@ Do traffic stop outcomes (searches and arrests) differ significantly between the
 
 ---
 
-## Overview of Data Folder
+## **1. Data Folder**
 This directory contains the essential reference files required to contextualize, filter, and model the raw stop data.
 
 | File | Type | Project Role |
@@ -24,81 +24,59 @@ This directory contains the essential reference files required to contextualize,
 
 ---
 
-Overview of data folder
 
-This directory contains the supplemental datasets required to contextualize and filter the raw San Antonio traffic stop data. These files are used in the Data Integration and Preprocessing stages of the pipeline to align individual stops with specific policy regimes and municipal boundaries.
+### **2. Data Wrangling Folder**
+This directory executes the core data science pipeline in a strict sequential order to ensure data integrity and statistical rigor.
 
-1. policy_data.csv
-   - Supplemental Policy Dataset
-   - Manually constructed from federal executive orders, state statutes, and SAPD municipal ordinances
-   - Contains 20 distinct policy records including effective dates and jurisdiction levels
-   - Used to create 14 binary policy variables
-   - Delineates Obama Era and Trump Era for trend analysis
-   - Acts as Intervention indicator for interactions terms of regression models
+| Execution Order | Notebook | Key Operations |
+| :--- | :--- | :--- |
+| **Step 1** | `sanantonio-Sarah01.ipynb` | **Initial Cleaning**: Loads raw San Antonio dataset; removes redundant columns; standardizes data formats; performs preliminary record validation. |
+| **Step 2** | `initalencoding.ipynb` | **Feature Engineering**: Transforms categorical variables into binary numeric indicators; generates "Extreme Outcomes" by combining search and arrest indicators. |
+| **Step 3** | `filtering.ipynb` | **Spatial Verification**: Converts stop-level coordinate data into a GeoDataFrame; utilizes `.geojson` to filter coordinates falling outside official City of San Antonio boundaries. |
+| **Step 4** | `final_data_policy.ipynb` | **Final Integration**: Merges filtered stop data with supplemental policy indicators; performs final datetime truncation and column reordering for time-series analysis. |
 
-2. COSABoundary.geojson
-   - Geographic Boundary File
-   - From City of San Antonio Open Data Portal
-   - Polygons representing official municipal boundaries of San Antonio
-   - Used for spatial filtering during cleaning pipeline process
-   - Removes out-of-bounds stop locations and refines initial dataset down to usable municipal sample
+### **3. EDA Folder**
+This directory handles categorical aggregation and temporal analysis to visualize racial disparities and policy impacts.
 
+| Notebook | Project Role | Analysis Details |
+| :--- | :--- | :--- |
+| `sanantonio2-Sarah.ipynb` | **Temporal Trend Analysis** | Loads processed data; reconstructs "Race" labels from one-hot variables; calculates monthly Extreme Outcome Rates; generates line plots used to justify the ITS model. |
+| `eda.ipynb` | **Policy Impact Analysis** | Isolates Obama/Trump eras to examine EO 13688 (militarization) and EO 13773 (2017 transition); calculates mean outcome rates for Black, Hispanic, and White drivers. |
 
+### **4. Modeling Folder**
+This directory houses the primary inferential model designed to quantify changes in policing trends.
 
+| Notebook | Model Type | Functional Components |
+| :--- | :--- | :--- |
+| `its_modeling.ipynb` | **Interrupted Time Series (ITS)** | Defines OLS regression (trend/intervention); calculates the **Obama Counterfactual**; statistically validates the 2017 shift; generates comprehensive Observed vs. Predicted plots. |
 
-Overview of data_wrangling folder
+---
 
-This directory contains the modular Jupyter notebooks used to execute the data science pipeline. The workflow follows a strict sequential order to ensure data integrity, statistical rigor, and reproducibility. These scripts handle initial cleaning, categorical encoding, spatial filtering, and the final integration of policy-level indicators.
+## Usage Instructions
+To reproduce the analysis from raw data to final inference, follow the sequence below.
 
+| Phase | Step | Notebook | Description |
+| :--- | :--- | :--- | :--- |
+| **Wrangling** | 1 | `sanantonio-Sarah01.ipynb` | Run first to ingest and clean the raw Stanford Open Policing Project data. |
+| | 2 | `initalencoding.ipynb` | Run to encode demographic features and define the "Extreme Outcomes" target. |
+| | 3 | `filtering.ipynb` | Apply the spatial filter to refine the dataset to **824,051 valid observations**. |
+| | 4 | `final_data_policy.ipynb` | Execute to produce the final `teamb_final_data.csv` used for all remaining analysis. |
+| **Exploration** | 5 | `eda.ipynb` / `sanantonio2-Sarah.ipynb` | Generate visual summaries of racial disparities and policy-specific impact charts. |
+| **Modeling** | 6 | `its_modeling.ipynb` | Run final regression to produce the ITS model predictions and the Obama Counterfactual projection. |
 
+---
 
-Execution Order of Notebooks
+## Dependencies
+This project requires a Python 3.8+ environment with the following libraries.
 
-1. sanantonio-Sarah01.ipynb - Initial Cleaning
-   - Loads raw San Antonio dataset
-   - Removes redundant columns to reduce memory overhead
-   - Standardizes data formats and performs preliminary record validation
-2. initalencoding.ipynb - Feature Engineering
-   - Transforms categorical variables into binary numeric indicators
-   - Generates Extreme Outcomes by combining search and arrest indicators
-3. filtering.ipynb - Spatial Verification
-   - Converts stop-level coordinate data into GeoDataFrame
-   - Utilizes .geojson file to perform point-in polygon intersection
-   - Filters out coordinates falling outside of official City of San Antonio municipal boundaries
-   - Refines overall dataset into valid observations
-4. final_data_policy.ipynb - Final Integration
-   - Merges the filtered stop data with the supplemental policy indicators
-   - Performs final datetime truncation and column reordering for time-series analysis
-   - Ensures dataset is ready for the Interrupted Time Series model
-   
+| Library | Purpose |
+| :--- | :--- |
+| `pandas` | Primary data manipulation, CSV ingestion, and categorical encoding. |
+| `geopandas` | Geographic data handling and point-in-polygon spatial filtering. |
+| `statsmodels` | Statistical modeling, OLS regression, and Interrupted Time Series execution. |
+| `seaborn` | Advanced categorical visualization and policy comparison bar charts. |
+| `matplotlib` | Standard time-series plotting and comprehensive ITS graph generation. |
+| `shapely` | Geometric operations required for spatial verification. |
+| `numpy` | Numerical operations and matrix handling for modeling. |
 
-Overview of eda folder
-
-This directory contains the notebooks used for the Exploratory Data Analysis (EDA) and Visual Summaries of the San Antonio traffic stop data. These scripts perform categorical aggregation and temporal analysis to visualize racial disparities and the specific impacts of federal Executive Orders.
-
-1. sanantonio2-Sarah.ipynb
-   - Temporal Trend Analysis and Racial Baseline
-   - Loads processed final data
-   - Reconstructs categorical "Race" labels from one-hot encoded variables for professional plotting
-   - Calculates the monthly Extreme Outcome Rate (searches and arrests) for each demographic group
-   - Generates the "Extreme Outcome Rates Over Time by Race" line plot, which identifies the long-term trends used to justify our Interrupted Time Series model
-  
-2. eda.ipynb
-   - Comparative Policy Impact Analysis
-   - Isolates the Obama Era and Trump Era to examine the specific effects of EO 13688 and EO 13773
-     - Obama Era (Impact of EO 13688): Visualizes the change in "militarization" outcomes following the 2015 order
-     - Trump Era (Impact of EO 13773): Demonstrates the escalation in extreme outcome rates after the 2017 policy transition
-   - Calculates mean outcome rates for Black, Hispanic, and White drivers before and after each policy implementation
-
-
-
-Overview of modeling folder
-
-This directory contains the primary inferential model for the project: the Interrupted Time Series analysis. This model is designed to quantify changes in both the "level" and "trend" of extreme policing outcomes, specifically searches and arrests, before and after the January 20, 2017, administrative shift.
-
-its_modeling.ipynb
-- Loads final data and aggregates records into monthly Extreme Outcome rates
-- Defines an Ordinary Least Squares (OLS) regression model incorporating time (trend), an intervention dummy (January 2017), and a post-intervention trend variable
-- Calculates the "Obama Counterfactual", which is a projection of what the policing trends might have looked like had the 2017 policy shift not occurred
-- Includes Extreme Outcome Rate comprehensive plot displaying observed data points, the fitted ITS model prediction, and the counterfactual baseline
-- Statistically validates whether the shift in 2017 was a significant departure from previous trends
+---
