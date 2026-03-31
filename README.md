@@ -1,6 +1,29 @@
 [![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-22041afd0340ce965d47ae6ef1cefeee28c7c493a6346c4f15d667ab976d596c.svg)](https://classroom.github.com/a/MFzEnxem)
 
 
+
+📖 1. Project Description
+This study evaluates how shifting political climates and federal Executive Orders influence police behavior and traffic stop outcomes over time. By focusing on San Antonio—a city where approximately 65% of the population identifies as Hispanic or Latino—we examine ethnic disparities through the lens of changing administrative regimes.
+
+Core Research Question
+Do traffic stop outcomes (searches and arrests) differ significantly between the Obama Era (defined by EO 13688) and the Trump Era (defined by EO 13773), and how do these transitions impact the racial "disparity gap"?
+
+.
+├── data/
+│   ├── COSABoundary.geojson      # Municipal boundary for spatial filtering
+│   └── policy_data.csv           # Supplemental federal/state policy timeline
+├── data_wrangling/
+│   ├── sanantonio-Sarah01.ipynb  # Initial cleaning and column removal
+│   ├── initalencoding.ipynb      # Categorical encoding & target creation
+│   ├── filtering.ipynb           # Spatial point-in-polygon filtering
+│   └── final_data_policy.ipynb   # Merging stop data with policy indicators
+├── eda/
+│   ├── sanantonio2-Sarah.ipynb   # Temporal trend analysis by race
+│   └── eda2.ipynb                # Comparative bar charts for EOs
+├── modeling/
+│   └── its_modeling.ipynb        # Interrupted Time Series (ITS) regression
+└── README.md                     # Comprehensive Project Overview
+
 Overview of data folder
 
 This directory contains the supplemental datasets required to contextualize and filter the raw San Antonio traffic stop data. These files are used in the Data Integration and Preprocessing stages of the pipeline to align individual stops with specific policy regimes and municipal boundaries.
