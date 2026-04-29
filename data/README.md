@@ -1,7 +1,7 @@
 # Data Directory: Supplemental Reference Data
 
 ## Overview
-This directory contains the supplemental datasets required to contextualize, filter, and model the raw traffic stop data from the **Stanford Open Policing Project**. These files provide the geographic and legislative framework used to refine the dataset from **880,810 observations to the final sample of 824,051 valid records**.
+This directory contains the supplemental datasets required to contextualize, filter, and model the raw traffic stop data from the Stanford Open Policing Project. These files provide the geographic and legislative framework used to refine the dataset from 880,810 observations to the final sample of 824,051 valid records.
 
 ---
 
@@ -21,7 +21,7 @@ This directory contains the supplemental datasets required to contextualize, fil
 * **Role**: Spatial Integrity and Geographic Filtering.
 * **Source**: [City of San Antonio (COSA) Open Data Portal](https://data.sanantonio.gov/).
 * **Contents**: High-resolution MultiPolygon coordinates representing the official municipal boundaries of San Antonio.
-* **Project Function**: During the preprocessing phase (`filtering.ipynb`), we convert stop-level coordinate data into a GeoDataFrame. We perform a **point-in-polygon intersection** using this GeoJSON to remove **56,759 out-of-bounds records**, ensuring the analysis strictly represents municipal SAPD enforcement.
+* **Project Function**: During the preprocessing phase (`filtering.ipynb`), we convert stop-level coordinate data into a GeoDataFrame. We perform a point-in-polygon intersection using this GeoJSON to remove 56,759 out-of-bounds records, ensuring the analysis strictly represents municipal SAPD enforcement.
 
 ---
 
@@ -48,7 +48,7 @@ These reference files are called by the following notebooks in the sequential pi
 ---
 
 ## Note on Raw Data
-Due to file size limitations and licensing agreements, the primary raw stop-level dataset (`sanantonio.csv`) from the **Stanford Open Policing Project** is not hosted in this directory. It must be downloaded separately and placed in the project root as described in the main repository instructions.
+Due to file size limitations and licensing agreements, the primary raw stop-level dataset (`sanantonio.csv`) from the Stanford Open Policing Project is not hosted in this directory. It must be downloaded separately and placed in the project root as described in the main repository instructions.
 
 
 This folder stores the data that has been used.
