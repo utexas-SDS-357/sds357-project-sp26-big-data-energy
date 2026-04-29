@@ -1,5 +1,3 @@
-# Data Directory: Supplemental Reference Data
-
 ## Overview
 This directory contains the supplemental datasets required to contextualize, filter, and model the raw traffic stop data from the Stanford Open Policing Project. These files provide the geographic and legislative framework used to refine the dataset from 880,810 observations to the final sample of 824,051 valid records.
 
